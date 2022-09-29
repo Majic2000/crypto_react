@@ -8,9 +8,11 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useState } from 'react';
 
 
-export const Cryptocurrencies = () => {
+export const Cryptocurrencies = ({simplified}) => {
 
-  const {data: cryptosList, isFetching } = useGetCryptosQuery();
+  const count = simplified ? 10 : 100;
+
+  const {data: cryptosList, isFetching } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
 
   console.log(cryptos);
